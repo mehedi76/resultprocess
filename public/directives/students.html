@@ -1,0 +1,69 @@
+	    <div class="container stu_reg" >
+	    	<div class="row">
+					<h2 class="text_center">Student Information</h2>
+			</div>
+
+	    	<div class="row stu_ml_remove">
+				<div class="each_div clearMargin">
+					<label for="session" class="stu_label_margin_remove">Session</label>
+					<select class="form-control change" ng-model="session" ng-options="each for each in allSemester | unique ">
+						<!-- <option ng-repeat="each in allSemester | unique ">{{each}}</option> -->
+					</select>
+				</div>
+
+				<div class="each_div clearMargin">
+					<label for="search" class="stu_label_margin_remove">Search</label>
+					<input type="text" class="form-control change" placeholder="2011334030" ng-model='studentReg' ng-change="searchStudent(studentReg)">
+				</div>
+				
+			</div>
+	    </div>
+		
+		<div class="container" >
+			<div ng-hide="!student && !session">
+				<table class="table student_table">
+					<thead>
+ 						<tr>
+ 							<th>SL no.</th>
+ 							<th>Reg. no.</th>
+ 							<th>Name</th>
+ 							<th>Father Name</th>
+ 							<th>Mother Name</th>
+ 							<th>Session</th>
+ 							<th>Email</th>
+ 							<th>Phone</th>
+ 							<th>Address</th>					
+ 						</tr>
+ 					</thead>
+
+
+ 					<tbody>
+ 						<tr ng-repeat="student in students" ng-hide="searchByReg">
+		 					<td> {{$index + 1}}</td>
+		 					<td class="change_input"> {{student.reg}}</td>
+		 					<td>{{student.name}}</td>
+		 					<td>{{student.father_name}}</td>
+		 					<td>{{student.mother_name}}</td>
+		 					<td class="change_input">{{student.session}}</td>
+		 					<td>{{student.email}}</td>
+		 					<td class="change_input">{{student.phone}}</td>
+		 					<td>{{student.address}}</td>
+ 						</tr>
+
+
+ 						<tr ng-show="searchByReg">
+ 							<td> {{$index + 1}}</td>
+		 					<td class="change_input"> {{student.reg}}</td>
+		 					<td>{{student.name}}</td>
+		 					<td>{{student.father_name}}</td>
+		 					<td>{{student.mother_name}}</td>
+		 					<td class="change_input">{{student.session}}</td>
+		 					<td>{{student.email}}</td>
+		 					<td class="change_input">{{student.phone}}</td>
+		 					<td>{{student.address}}</td>
+ 						</tr>
+ 					</tbody>
+				</table>
+			</div>
+		</div> <!-- end container -->
+

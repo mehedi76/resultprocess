@@ -1,0 +1,74 @@
+		<div>
+			
+			<div class="container">
+				<div class="row">
+					<h2 class="text_center">Result</h2>
+				</div>
+
+				<div class="row">
+					<div class="each_div">
+						<label for="session" class="label_margin_remove">Session</label>
+						<select class="form-control change" ng-model="session">
+							<option ng-repeat="each in allSemester | unique ">{{each}}</option>							
+						</select>
+					</div>
+
+					<div class="each_div each_div_middle">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+						</select>
+					</div>
+					
+					<div class="each_div each_div_last">
+						<label for="course" class="label_margin_remove">Course</label>
+						<select class="form-control change change_semester change_width" ng-model='course_id' ng-options="course.course_id for course in semester_no.course_teacher" >								
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="container" ng-show="course_id">
+				<table class="table result_input_table">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+							<th>Reg. No.</th>
+							<th class="text_align_left">Name</th>
+							<th>Performance</th>
+							<th>Term Test</th>
+							<th>Final</th>
+							<th style="margin-left:10px">Total</th>
+							<th>Grade Point</th>
+							<th>Grade Letter</th>
+						</tr>
+						<tr>
+							<th>Based On</th>
+							<th></th>
+							<th></th>
+							<th class="text">10</th>
+							<th class="text">20</th>
+							<th class="text">70</th>
+							<th class="text" style="margin-left:10px">100</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="student in students | orderBy: 'reg'">
+							<td>{{$index +1}}</td>
+							<td class="text_align_left">{{student.reg}}</td>
+							<td class="text_align_left">{{student.student[0].name}}</td>
+							<td>{{resultCalculation.attendenceMark(student.attendence,baseResult.total_class)}}</td>
+							<td>{{student.term_test}}</td>
+							<td>{{resultCalculation.finalExam(student.theory + student.lab, baseResult.theory_modify + baseResult.lab_modify)}}</td>
+							<td style="margin-left:10px">{{student.total}}</td>
+							<td>{{ grade = resultCalculation.gradePoint(student.total)}}</td>
+							<td>{{ resultCalculation.gradeLetter(grade)}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>

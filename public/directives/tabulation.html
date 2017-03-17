@@ -1,0 +1,207 @@
+		<div>
+			
+			<div class="container noPrint">
+				<div class="row">
+					<h2 class="text_center">Tabulation Sheet</h2>
+				</div>
+
+				<div class="row">
+					<div class="each_div">
+						<label for="session" class="label_margin_remove">Session</label>
+						<select name="newCommitee.session" id="session" class="form-control change" ng-model="session">
+							<option ng-repeat="each in allSemester | unique ">{{each}}</option>
+							
+						</select>
+					</div>
+
+					<div class="each_div each_div_middle">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+						</select>
+					</div>
+
+					<div class="printBtn" ng-show="semester_no">
+						<button class="btn btn-default myButton" onclick="window.print()">Print</button>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="onlyPrint" ng-show="semester_no">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="sust_logo">
+								<img src="img/1419751326.jpg" alt="">
+							</div>
+						</div>
+
+						<div class="col-md-8">
+							<div class="pr_title">
+								<h2>Shahjalal University of Science & technology sylhet,bangladesh</h2>
+								<h2>Tabulation sheet</h2>
+								<p>Institute of Information and Communication Technology</p>
+								<p>Post Graduate Diploma in Information Technology</p>
+								<p>{}semester Examination</p>
+								<p>SESSION: {{session}}    Examination Held in : {}</p>
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<p class="publish">Result Publish on.......................</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container" ng-show="semester_no">
+				<div class="t_table_center">
+					<table class="tabutation" ng-show="semester_no">
+						<thead>
+							<tr>
+								<th>Reg. No.</th>
+								<th class="t_name">
+									<p style="text-align: left">Name</p>
+									<p>Semester =</p>
+									<p >Course No. =</p>
+									<p>Credit =</p>
+								</th>
+
+								<th class="t_course" ng-repeat='course in semester_no.course_teacher'>
+									<p class="small_letter">{{semester_no.semester_no}}</p>
+									<p>{{course.course_id}}</p>
+									<p ng-repeat="each in courses | filter:{course_id:course.course_id}">{{each.credit}}</p>
+								</th>
+
+								<th>Total Credit</th>
+								<th>Total GPA</th> 
+								<th>Letter Grade</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="student in students | orderBy: 'reg'">
+								<td>{{student.reg}}</td>
+								<td style="text-align: left">{{student.name}}</td>
+								<td ng-repeat="result in allResult | findCourse : semester_no.course_teacher | filter : {reg: student.reg}">
+									<p class="left_side">{{grade = resultCalculation.gradePoint(result.total)}}</p>
+									<p class="right_side">{{resultCalculation.gradeLetter(grade)}}</p>
+								</td>
+								<td>{{findValue(student.reg,'credit')}}</td>
+								<td>{{grade = findValue(student.reg,'totalGpa')}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="onlyPrint" ng-show="semester_no">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="pr_title float_margin">
+								<p>Signature of the Chairman: </p>
+								<p>Name</p>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="pr_title float_margin">
+								<p>.....................................................</p>
+								<p>{Chairman name}</p>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="pr_title float_margin">
+								<p>Signature of the Controller of Examinations: </p>
+								<p>Name</p>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="pr_title float_margin">
+								<p>.........................................................</p>
+								<p>{Chairman name}</p>
+							</div>
+						</div>
+					</div><!-- row end -->
+
+					
+						<div class="row row_distance">
+							<div class="col-md-3">
+								<div class="pr_title float_margin">
+									<p>Signature of the Members: </p>
+									<p>Name</p>
+								</div>
+							</div>
+							<div class="col-md-9">
+									
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>.......................................</p>
+										<p>{Name}</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>........................................</p>
+										<p>{Name}</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>...........................................</p>
+										<p>{Name}</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>..........................................</p>
+										<p>{Name}</p>
+									</div>
+								</div>
+									
+							</div>
+							
+						</div><!-- row end -->
+
+						<div class="row row_distance">
+							<div class="col-md-3">
+								<div class="pr_title float_margin">
+									<p>Signature of the Tabulators: </p>
+								</div>
+							</div>
+							<div class="col-md-9">
+									
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>.........................................</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>..........................................</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>.........................................</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>..........................................</p>
+									</div>
+								</div>
+									
+							</div>
+							
+						</div><!-- row end -->
+					
+				</div>
+			</div>	
+
+		</div>

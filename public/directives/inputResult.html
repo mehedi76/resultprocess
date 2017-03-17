@@ -1,0 +1,87 @@
+		<div>
+			
+			<div class="container">
+				<div class="row">
+					<h2 class="text_center">Result Input</h2>
+				</div>
+
+				<div class="row">
+					<div class="each_div">
+						<label for="session" class="label_margin_remove">Session</label>
+						<select class="form-control change" ng-model="session">
+							<option ng-repeat="each in allSemester | chairmanFilter: current_user._id:current_user.role">{{each}}</option>							
+						</select>
+					</div>
+
+
+					<div class="each_div each_div_middle">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+						</select>
+					</div>
+					
+					<div class="each_div each_div_last">
+						<label for="course" class="label_margin_remove">Course</label>
+						<select class="form-control change change_semester change_width" ng-model='course_id' ng-options="course.course_id for course in semester_no.course_teacher" >								
+						</select>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="container" ng-show="hideOrShow()">
+				<table class="table result_input_table">
+					<thead>
+						<tr>
+							<th rowspan="2">SL No.</th>
+							<th rowspan="2">Reg. No.</th>
+							<th rowspan="2" style="text-align: left">Name</th>
+							<th rowspan="2">Performance</th>
+							<th rowspan="2">Term Test</th>
+							<th colspan="2">Final</th>
+							<th rowspan="2">Total</th>
+						</tr>
+						<tr>
+							<th>Theory</th>
+							<th ng-show="courseDetail.lab!=='0'">Lab</th>
+						</tr>
+						<tr>
+							<th>Modify</th>
+							<th></th>
+							<th></th>
+							<th><input type="number" class="modify_result text" ng-model="baseResult.total_class" ng-blur="modifyPerformance(baseResult.total_class)"></th>
+
+							<th><input type="number" class="modify_result text" ng-model="baseResult.term_test_modify" ng-blur="modifyTermNo(baseResult.term_test_modify)"></th>
+
+							<th><input type="number" class="modify_result text" ng-model="baseResult.theory_modify" ng-blur="modifyThory(baseResult.theory_modify)"></th>
+
+							<th><input type="number" step="any" class="modify_result text" ng-model="baseResult.lab_modify" ng-blur="modifyLab(baseResult.lab_modify)" ng-show="courseDetail.lab!=='0'"></th>
+
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="student in students | orderBy: 'reg'">
+							<td>{{$index + 1}}</td>
+							<td text_align_left>{{student.reg}}</td>
+							<td text_align_left>{{student.student[0].name}}</td>
+
+							<td><input type="number"  class="modify_result" ng-model="student.attendence" ng-blur="autoSaveAttendance(student.reg,student.attendence)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.term_test" ng-blur="autoSaveTerm(student.reg,student.term_test)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.theory" ng-blur="autoSaveTheory(student.reg,student.theory)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.lab" ng-blur="autoSaveLab(student.reg,student.lab)" ng-change="totalResult(student)" ng-show="courseDetail.lab!=='0'"></td>
+
+							<td ><input type="text" class="modify_result" ng-model="student.total" disabled></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="middle">
+				<button class="btn btn-default myButton bottom_margin" ng-show="hideOrShow()" ng-click="saveBtn()">Save</button>
+			</div>
+
+
+		</div>

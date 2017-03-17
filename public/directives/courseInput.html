@@ -1,0 +1,91 @@
+		<div>			
+			<div class="container">
+				<div class="row">
+					<h2 class="text_center">Syllabus Input</h2>
+				</div>
+				<div class="row">
+					<div class="each_div clearMargin">
+						<label for="session" class="label_margin_remove">Session</label>
+						<input type="text" name="session" id="session" class="form-control change" placeholder="2011-12" ng-model="session">
+					</div>
+				</div>				
+
+			</div>
+
+			<div class="container" ng-repeat="term in terms">
+				<!-- <div course-table semester={{term}} courses="courses"{{+term}} course_array='addCourse(courses)'></div> -->
+				<div class="row">
+					<div class="each_div clearMargin">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<input type="text" name="semester" id="semester" class="form-control change change_semester" placeholder="01" ng-model="term">
+						</input>
+					</div>
+				</div>
+				<table class="table result_input_table course_input_table">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+							<th>Course No.</th>
+							<th>Course Title</th>
+							<th>Theory <br/>(hours)</th>
+							<th>Lab <br/>(hours)</th>
+							<th>Credit</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						<tr ng-repeat="course in courses | filter:{term:term}">
+							<td class="table_index">{{$index + 1}}</td>
+							<td class="course_no"><input type="text" class="modify_result" placeholder="PGD-111" ng-model="course.course_id" focus-me="true"></td>
+							<td class="course_title"><input type="text" class="modify_result" placeholder="Course Title" ng-model="course.course_title"></td>
+							<td class="tdeory"><input type="number" class="modify_result course_credit" placeholder="Hour" ng-model="course.theory"></td>
+							<td class="lab"><input type="number" class="modify_result course_credit" placeholder="Hour" ng-model="course.lab"></td>
+							<td><input type="number" class="modify_result course_credit" placeholder="Credit" ng-model="course.credit"></td>
+							<td><div id="cross_sign" ng-click="deleteCourse(course)"><img src="../img/crossSign.png" alt="" width="15px"></div></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="container">
+					<div class="middle_btn center_button">
+
+						<div class="circle_btn_out">
+							<button class="btn btn-default circle_btn" ng-click="addCourse(term)"><img src="img/plus.png" alt=""></button>
+						</div>
+						<div class="text_div">
+							<p>Add Course</p>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+			</div>
+
+			<div class="container">
+			<div class="middle_btn center_button clearBottom">
+
+				<!-- <div class="circle_btn_out">
+					<button class="btn btn-default circle_btn" ng-click="addCourse()"><img src="img/plus.png" alt=""></button>
+				</div>
+				<div class="text_div">
+					<p>Add Course</p>
+				</div> -->
+
+				<div class="circle_btn_out">
+					<button class="btn btn-default circle_btn" ng-click="addSemester()"><img src="img/plus.png" alt=""></button>
+				</div>
+				<div class="text_div">
+					<p>Add Semester</p>
+				</div>
+
+				<div>
+					<button class="btn btn-primary myButton save"  ng-click="save()" ng-show="showSave">Save</button>
+				</div>
+			</div>
+		</div>
+
+
+		</div>

@@ -1,0 +1,798 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-size: 12px;
+	/*font-family: "Roboto";*/
+	font-family: "Rockwell";
+	background-color: #ccc;
+}
+
+header{
+	margin-bottom: 10px;
+}
+
+.changePosition{
+	margin-top: 12px;
+}
+.changePosition>li> button{
+	margin-left: 10px;
+}
+.logDiv{
+	width: 40%;
+	margin: 80px auto;
+}
+
+.logo{
+	position: relative;
+}
+.logo img{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	left: -30px;
+}
+.shohidMinar{
+	background: url("../img/SUST_1_km_entrance_way.jpg") no-repeat -25px -600px;
+	height: 232px;
+	border-bottom-left-radius: 3px;
+}
+/*.shohidMinar img{
+	width: 100%;
+	height: 100%;
+}*/
+
+.removePad{
+	margin-top: 165px;
+	margin-left: -15px;
+	background-color: rgba(11, 39, 4, 0.82);
+	height: 55px;
+
+}
+
+.nav_Change{
+	width: 102.8%;
+	margin-left: -15px;
+	margin-top: 180px;
+	border-radius: none;
+}
+.navbar-default .navbar-nav > li > a {
+	
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+	color: red;
+}
+
+
+.text_center{
+	text-align: center;
+	font-size: 2em;
+	margin-bottom: 30px;
+}
+
+
+select{
+	display: inline;
+}
+
+
+label{
+	font-size: 1.2em;
+	font-weight: 400;
+	color:black;
+	letter-spacing: 1px;
+	display: block;
+	float: left;
+	margin-right: 50px;
+	width: 10%;
+}
+.sizeChange{
+	width: 40%;
+	margin-right: 0px;
+}
+
+.label_margin_remove{
+	margin-left: 0px;
+}
+.change{
+	width: 25%;
+	font-size: 1em;
+	font-weight: 400;
+	letter-spacing: 1px;
+	height: 25px;
+	line-height: 1px;
+	padding: 4px 6px;
+	color:black;
+	text-align: center;
+}
+.sizeChangeInput{
+	width: 40%;
+}
+.change_semester{
+	width: 16%;
+}
+.change_width{
+	width: 30%;
+}
+.change_chairman{
+	width: 70%;
+	margin-bottom: 25px;
+}
+.change_course{
+	width: 40%;
+}
+
+.commitee_table th{
+	text-align: left;
+}
+
+.teacher_select{
+	width: 33%;
+	text-align: left;
+	margin-right: 0;
+}
+
+.select_width{
+	width: 80%;
+	text-align: center;
+}
+
+.middle{
+	text-align: center;
+	margin-top: 20px;
+}
+.myButton{
+	width: 100px;
+}
+.myButton a{
+	text-decoration: none;
+}
+
+.center{
+	margin-bottom: 15px;
+	padding-left: 180px;
+}
+
+.bg_color{
+	background-color: rgba(210,21,16,.8);
+}
+
+.each_div{
+	width: 32%;
+	float: left;
+	margin-left: 25%;
+	margin-bottom: 20px;
+}
+
+.each_div_middle{
+	margin-left: -15%;
+}
+
+.each_div_last{
+	margin-left:-15%;
+}
+
+.clearMargin{
+	margin-left: 10%;
+	margin-top: 30px;
+	margin-bottom: 25px;
+}
+
+/***********************************************************
+              Tabulation Sheet
+***********************************************************/
+
+
+.printBtn{
+	text-align: right;
+}
+.t_table_center{
+	text-align: center;
+}
+
+.tabutation, .tabutation th, .tabutation td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+.tabutation{
+	width: 90%;
+	margin:  5% 5%;
+}
+
+.tabutation > thead > tr>th{
+	width: 80px;
+	text-align: center;
+}
+.tabutation > thead > tr> .t_name{
+	min-width: 200px;
+	height: 60px;
+	position: relative;
+	text-align: left;
+}
+.tabutation > thead > tr> .t_name >p:nth-child(2){
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.tabutation > thead > tr> .t_name >p:nth-child(3){
+	position: absolute;
+	top: 20px;
+	right: 0px;
+}
+.tabutation > thead > tr> .t_name >p:nth-child(4){
+	position: absolute;
+	top: 40px;
+	right: 0px;
+}
+
+.small_letter{
+	font-size: .8em;
+}
+
+
+
+.tabutation > thead > tr> .t_course{
+	position: relative;
+	min-width: 100px;
+}
+.tabutation > thead > tr> .t_course >p:nth-child(1){
+	position: absolute;
+	top: 0%;
+	left: 20%;
+}
+
+.tabutation > thead > tr> .t_course >p:nth-child(2){
+	position: absolute;
+	font-size: 1.2em;
+	top: 19px;
+	left: 10%;
+}
+
+.tabutation > thead > tr> .t_course >p:nth-child(3){
+	position: absolute;
+	top: 40px;
+	left: 20%;
+}
+
+.left_side{
+	text-align: center;
+	width: 50%;
+	float: left;
+}
+.right_side{
+	text-align: center;
+	width: 50%;
+	float: left;
+}
+
+/***************************************************
+***************  Result Input **********************
+***************************************************/
+.result_input_table{
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+}
+.result_input_table > tbody > tr > td{
+	text-align: center;
+}
+.result_input_table > tbody > tr > td:nth-child(3){
+	text-align: left;
+}
+.modify_result{
+	text-align: center;
+	color: #000000;
+	width: 60px;
+	background-color: #ccc;
+}
+
+.modify_result:focus{
+	outline: none;
+}
+
+.modify_result:disabled{
+	background-color: #ccc;
+	border:none;
+}
+.text{
+	color: #ff0000;
+	font-weight: 600;
+	font-size: 1.1em;;
+}
+.text_align_left{
+	text-align: left;
+}
+th{
+	vertical-align: center;
+	display: table-cell;
+	text-align: center;
+}
+input[type=number] { 
+  -moz-appearance: textfield;
+  appearance: textfield;
+  border:none; 
+  margin: 0;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.result_input_table >tbody> tr:hover{
+	color: #ea0000;
+}
+.result_input_table >tbody> tr:hover input[type=number]{
+	
+	font-weight: 600;
+}
+
+input[type=number]:focus{
+	border-color:1px solid #ccc;
+}
+/*.result_input_table tr:focus {
+  border-color: #2b542c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+}*/
+
+
+
+
+/***************************************************
+***************  Course Input **********************
+***************************************************/
+
+
+
+.course_input_table{
+	width: 80%;
+	margin:0 auto 30px auto;
+}
+.course_input_table > tbody > tr > td> input[type=text]{
+	padding: 5px 2px;
+	border:none;
+	width: 100%;
+}
+.course_input_table .table_index{
+	max-width: 80px;
+}
+
+.course_input_table .course_no{
+	width: 100px;
+
+}
+.course_input_table .course_title{
+	width: 400px;
+
+}
+
+#cross_sign img{
+	margin-top: -4px;
+}
+
+.student_table #cross_sign img{
+	margin-top: 7px;
+}
+
+#cross_sign img:hover{
+	cursor: pointer;
+}
+
+.course_input_table .course_credit{
+	width: 50px;
+}
+
+.center_button{
+	width: 30%;
+	margin: 0 auto;
+	margin-bottom: 100px;
+}
+.clearBottom{
+	margin-bottom: 50px;
+}
+
+/***************************************************
+***************  Mark Sheet **********************
+***************************************************/
+
+.mark_table{
+	text-align: center;
+	width: 90%;
+	margin: 30px auto;
+}
+.mark_table th, .mark_table td{
+	padding: 5px;
+	text-align: center;
+}
+.mark_table, .mark_table th, .mark_table td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.mark_table > thead > tr> .m_title{
+	min-width: 150px;
+	
+}
+.mark_table > thead > tr> .m_grade{
+	max-width: 100px;
+	
+}
+
+.m_right_text{
+	text-align: right;
+	padding-right: 10px;
+}
+.termLeft{
+	text-align: left;
+	padding-left: 55px;
+}
+
+/************************************************************
+                 Student Input
+*************************************************************/
+.stu_label_margin_remove{
+	margin-left: 100px;
+}
+.stu_ml_remove label{
+	margin-right: 30px;
+}
+
+.stu_reg{
+	text-align: center;
+}
+
+.student_table{
+	width: 90%;
+	margin: 0 auto;
+}
+.student_table th,td{
+}
+.student_table > thead > tr > th > span{
+	color: red;
+}
+.student_table > tbody > tr > td > input[type=text]{
+	padding: 5px 0;
+	border:none;
+	width: 100%;
+	text-align: center;
+}
+.student_table > tbody > tr > .change_input > input[type=text]{
+	width: 90px;
+}
+
+.circle_btn{
+	width: 40px;
+	height: 40px;
+	border-radius: 80%;
+	padding: 0;
+	text-align: center;
+}
+.circle_btn_out{
+	width: 60px;
+	height: 60px;
+	border-radius: 80%;
+	background-color: #fff;
+	text-align: center;
+	padding-top: 9px;
+	float: left;
+}
+
+.text_div{
+    float: left;
+    background: #fff;
+    text-align: center;
+    width: 120px;
+    padding-top: 6px;
+    margin-top: 13px;
+    margin-left: -10px;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+.middle_btn{
+	margin-top: 40px;
+}
+
+.excel_panel{
+	float: left;
+	background-color: #fff;
+	padding: 15px;
+	margin-left: 20px;
+	width: 410px;
+	border-radius: 8px;
+}
+.excel_panel input[type=file]{
+	display: block;
+	float: left;
+	margin-top: 5px;
+	font-size: 1.1em;
+	width: 200px;
+}
+.excel_panel label{
+	display: block;
+	margin-right: 10px;
+	margin-top: 5px;
+	float: left;
+	width: 65px;
+	font-size: 1em;
+}
+
+.save{
+	margin-top: 15px;
+	margin-left: 50px;
+}
+
+.error{
+	color: while;
+	border: 1px solid red;
+}
+
+/*****************************************************
+				Teacher info and reg....
+*******************************************************/
+
+.inputForm >label{
+	font-size: 1.2em;
+	font-weight: 400;
+	color:black;
+	letter-spacing: 1px;
+	display: block;
+	width: 10%;
+}
+
+.inputForm >input[type=text]{
+	font-size: 1.2em;
+	font-weight: 400;
+	color:black;
+	display: block;
+	letter-spacing: 1px;
+	margin: 0px 0px 15px 50px;
+	width: 55%;
+}
+
+.checkUser{
+	margin-top: -50px;
+	margin-left: 460px;
+}
+label>span{
+	color:red;
+}
+.inputForm span{
+	margin: 0px;
+}
+.positionChange{
+	position: absolute;
+	left:460px;
+	top: 0px;
+}
+.green{
+	color:rgba(12, 115, 49, 0.9);
+}
+.commitee_table{
+	width: 900px;
+	margin: 0 auto;
+
+}
+.commitee_div{
+	margin-left: -100px;
+}
+
+.red{
+	color: red;
+}
+
+.commitee_course{
+	min-width: 30px;
+}
+
+.chairman{
+	margin-left: 109px;
+}
+.teacherName{
+	font-size: 1.2em;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.teacherDesig{
+	/*margin-left: 109px;*/
+    margin-top: -10px;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+}
+
+
+.teacherPhone{
+    margin-top: -3px;
+    font-size: .9em;
+    letter-spacing: 2px;
+}
+
+
+.teacherEmail{
+    margin-top: -3px;
+    font-size: .9em;
+    letter-spacing: 2px;	
+}
+
+
+/*****************************************************
+                   Media for Print
+******************************************************/
+
+
+
+/*****************************************************
+                   Media for Print
+******************************************************/
+
+.div_center{
+	width: 70%;
+	margin: 0 auto;
+}
+
+.inputForm{
+	width: 80%;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.bottom_margin{
+	margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+.showColor{
+	background-color: #eceff3;
+}
+
+.showTeacher{
+	margin-bottom: 20px;
+	padding: 10px 0 10px 30px;
+	border-radius: 10px;
+}
+
+.showTeacher h5{
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.showTeacher > .designation{
+	font-size: .8em;
+	font-weight: 600;
+}
+
+.showTeacher p{
+	font-size: 1em;
+	font-weight: 400;
+	width: 100%;
+
+}
+
+.showTeacher span{
+	font-size: 1em;
+	font-weight: 400;
+}
+
+
+
+/*****************************************************
+					Only for Print 
+*******************************************************/
+
+
+
+/*****************************************************
+		   Only for Tabulation Sheet Print 
+*******************************************************/
+.onlyPrint{
+	text-align: center;
+	display:block;
+}
+
+.sust_logo{
+	width: 100px;
+	float: left;
+	margin-right: 20px;
+	margin-left: 30px;
+}
+.sust_logo > img{
+	width: 100%;
+	margin-top: 25px;
+}
+.onlyPrint h2{
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+.pr_title{
+	float: left;
+	margin-left: 10px;
+}
+.pr_title h2{
+	letter-spacing: 1px;
+}
+.m_pr_title{
+	text-align: left;
+}
+/* mark sheet*/
+.m_stu_info{
+	float:left;
+	width: 500px;
+	margin-top: 50px;
+	margin-left: 60px;
+}
+.first_div, .second_div , .third_div{
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+.m_stu_info p{
+	display: inline-block;
+	width: 25%;
+
+}
+
+.position_grade_table{
+	margin-top: -60px;
+	margin-left: 200px;
+	margin-bottom: 20px;
+}
+.grade_table{
+	border: 1px solid #000;
+}
+.grade_table th , .grade_table td{
+	padding: 0 5px;
+}
+.grade_table th {
+	border: 1px solid #000;
+}
+.syle_text{
+	text-align: left;
+	
+}
+.syle_text p{
+	padding-left: 35px;
+	margin: 0;
+}
+.publish{
+	margin-top: 10px;
+	font-size: 1.2em;
+	/*margin-left:50px;*/
+	float: right;
+}
+.row_distance{
+	margin-top: 50px;
+}
+.float_margin{
+	margin-left: 25px;
+}
+
+
+
+/*****************************************************
+                   Media for Print
+******************************************************/
+@media print
+{
+	.printBtn, header, .noPrint{
+		display:none;
+	}
+
+	.onlyPrint{
+		display: block;
+	}
+	body{
+		font-size: 14px;
+	}
+
+
+}

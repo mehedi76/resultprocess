@@ -1,0 +1,66 @@
+		<div>			
+			<div class="container">
+				<div class="row">
+					<h2 class="text_center">Syllabus</h2>
+				</div>
+
+				
+				<div class="row">
+					<div class="each_div clearMargin">
+						<label for="session" class="label_margin_remove">Session</label>
+						<select name="newCommitee.session" id="session" class="form-control change" ng-model="session">
+							<option ng-repeat="each in allSemester | unique ">{{each}}</option>
+							
+						</select>
+					</div>
+				</div>				
+
+			</div>
+
+			<div class="container" ng-repeat="term in terms">
+				<!-- <div course-table semester={{term}} courses="courses"{{+term}} course_array='addCourse(courses)'></div> -->
+				<div class="row">
+					<div class="each_div clearMargin">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<input type="text" name="semester" id="semester" class="form-control change change_semester" ng-model="term.semester_no" disabled="true">
+						</input>
+					</div>
+				</div>
+				<table class="table result_input_table course_input_table">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+							<th>Course No.</th>
+							<th>Course Title</th>
+							<th>Theory <br/>(hours)</th>
+							<th>Lab <br/>(hours)</th>
+							<th>Credit</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						<tr ng-repeat="course in courses | findCourse : term.course_teacher">
+							<td class="table_index">{{$index + 1}}</td>
+							<td class="course_no">{{course.course_id}}</td>
+							<td class="course_title">{{course.title}}</td>
+							<td class="tdeory">{{course.theory}}</td>
+							<td class="lab">{{course.lab}}</td>
+							<td>{{course.credit}}</td>
+							
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="container">
+			<div class="middle_btn center_button clearBottom">
+
+				<div>
+					<button class="btn btn-primary myButton save" ng-show="session">Edit</button>
+				</div>
+			</div>
+		</div>
+
+
+		</div>

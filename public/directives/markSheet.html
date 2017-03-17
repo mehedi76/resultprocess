@@ -1,0 +1,239 @@
+		<div>
+			
+			<div class="container noPrint">
+				<div class="row">
+					<h2 class="text_center">Mark Sheet</h2>
+				</div>
+
+				<div class="row">
+
+					<div class="each_div">
+						<label for="session" class="label_margin_remove sizeChange">Search by Reg. no</label>
+						<input type="text" class="form-control change sizeChangeInput" ng-model="reg" ng-change="findStudentData(reg)">
+					</div>
+					<!-- <div class="each_div">
+						<label for="session" class="label_margin_remove">Session</label>
+						<select class="form-control change" ng-model="session">
+							<option ng-repeat="each in allSemester | unique ">{{each}}</option>						
+						</select>
+					</div>
+
+					<div class="each_div each_div_middle">
+						<label for="semester" class="label_margin_remove">Semester</label>
+						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+						</select>
+					</div> -->
+
+					<div class="printBtn" ng-show="show">
+						<button class="btn btn-default myButton" onclick="window.print()">Print</button>
+					</div>
+
+				</div>
+
+			</div>	
+			
+				
+			<div class="" ng-show="show">
+				<div class="container">
+					<div class="row onlyPrint">
+						<div class="col-md-3">
+							<div class="sust_logo">
+								<img src="img/1419751326.jpg" alt="">
+							</div>
+						</div>
+
+						<div class="col-md-9">
+							<div class="pr_title m_pr_title">
+								<h2>Shahjalal University of Science & technology sylhet,bangladesh</h2>
+								<h4>Grade Certificate</h4>
+								<p>Institute of Information and Communication Technology</p>
+								<p>Post Graduate Diploma in Information Technology</p>
+								<p>Examination {2016}</p>
+							</div>
+						</div>
+
+						
+					</div> <!-- row end -->
+
+					<div class="row">
+						
+						<div class="col-md-6" ng-show="show">
+							<div class="m_stu_info">
+								<div  class="first_div">
+									<p>Name of Student:</p> 
+									<span>{{student.name}}</span>
+								</div>
+
+								<div  class="second_div">
+									<p>Registration No: </p>
+									<span>{{student.reg}}</span>
+								</div>
+
+								<div  class="third_div">
+									<p>Session: </p>
+									<span>{{student.session}}</span>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="col-md-6 onlyPrint">
+							<div class="position_grade_table">
+								<table class="grade_table">
+									<thead>
+										<tr>
+											<th>Numerical Grade</th>
+											<th>Letter Grade</th>
+											<th>Grade Point</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>80% or above</td>
+											<td class="syle_text"><p>A+</p></td>
+											<td>4.00</td>
+										</tr>
+										<tr>
+											<td>75% to less than 80%</td>
+											<td class="syle_text"><p>A</p></td>
+											<td>3.75</td>
+										</tr>
+										<tr>
+											<td>70% to less than 75%</td>
+											<td class="syle_text"><p>A-</p></td>
+											<td>3.50</td>
+										</tr>
+										<tr>
+											<td>65% to less than 70%</td>
+											<td class="syle_text"><p>B+</p></td>
+											<td>3.25</td>
+										</tr>
+										<tr>
+											<td>60% to less than 65%</td>
+											<td class="syle_text"><p>B</p></td>
+											<td>3.00</td>
+										</tr>
+										<tr>
+											<td>55% to less than 60%</td>
+											<td class="syle_text"><p>B-</p></td>
+											<td>2.75</td>
+										</tr>
+										<tr>
+											<td>50% to less than 55%</td>
+											<td class="syle_text"><p>C+</p></td>
+											<td>2.50</td>
+										</tr>
+										<tr>
+											<td>45% to less than 50%</td>
+											<td class="syle_text"><p>C</p></td>
+											<td>2.25</td>
+										</tr>
+										<tr>
+											<td>40% to less than 45%</td>
+											<td class="syle_text"><p>C-</p></td>
+											<td>2.00</td>
+										</tr>
+										<tr>
+											<td>Less than 40%</td>
+											<td class="syle_text"><p>F</p></td>
+											<td>0.00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+			<div class="container">
+				<div class="t_table_center" ng-repeat="term in terms | orderBy: 'semester_no'" ng-show="(filtered = (courses | findCourse : term.course_teacher)).length > 0">
+					
+					<div class="termLeft">
+						<h4>Term: {{term.semester_no}}</h4>
+					</div>
+
+					<table class="mark_table">
+						<thead>
+							<tr>
+								<th rowspan="2">Course no.</th>
+								<th rowspan="2" class="m_title">Course Title</th>
+								<th rowspan="2">Credit</th>
+								<th colspan="2" class="m_grade">Grade Obtaioned</th>
+							</tr>
+							<tr>
+								
+								<th>Grade Point</th>
+								<th>Letter Grade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="course in courses | findCourse : term.course_teacher">
+								<td>{{course.course_id}}</td>
+								<td>{{course.courseInfo[0].title}}</td>
+								<td>{{course.courseInfo[0].credit}}</td>
+								<td>{{grade = resultCalculation.gradePoint(course.total)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="m_right_text">This semester Total</th>
+								<td >{{totalGrade = thisSemesterCredit(term.semester_no,1)}}</td>
+								<td>{{grade = roundNum(thisSemesterCredit(term.semester_no,2) / totalGrade)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="m_right_text">Cumulative</th>
+								<td >{{cumulativeGrade = cumulativeCredit(term.semester_no,1)}}</td>
+								<td>{{grade = roundNum(cumulativeCredit(term.semester_no,2) / cumulativeGrade)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="onlyPrint" ng-show="show">
+				<div class="container">
+					<div class="row row_distance">
+							<div class="col-md-12">
+									
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>..................................................</p>
+										<p>Print On</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>....................................................</p>
+										<p>Prepared by</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>.....................................................</p>
+										<p>Compared by</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="pr_title float_margin">
+										<p>.....................................................</p>
+										<p>Deputy Controller of Examinations</p>
+									</div>
+								</div>
+									
+							</div>
+							
+						</div><!-- row end -->
+				</div>
+				
+			</div>
+
+		</div>

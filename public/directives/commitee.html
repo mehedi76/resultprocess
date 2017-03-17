@@ -1,0 +1,67 @@
+		<div>
+			<div class="container">
+				<div class="col-md-12">
+					<h2 class="text_center" >Set Exam Committee</h2>
+				</div>
+				<div class="container">
+					<form action="" class="col-md-8 col-md-offset-2">
+						<div class="center">
+							<label for="session">Session </label>
+							<select name="newCommitee.session" id="session" class="form-control change" ng-model="session">
+								<option ng-repeat="each in allSemester | unique ">{{each}}</option>
+							</select>
+						</div>
+
+						<div class="center">
+
+							<label for="semester">Semester </label>
+							<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'">								
+							</select>
+
+						</div>
+
+						<div class="center" ng-show="semester_no">
+							<label for="chairman">Chairman </label>
+							<select ng-model="chairman" class="form-control change change_chairman" ng-options="teacher.name for teacher in teacherList" ng-change="assignChairman(chairman)">
+								
+							</select>
+						</div>
+						<div class="commitee_div" ng-show="semester_no">
+							<table class="table commitee_table">
+								<thead>
+ 									<tr>
+ 										<th>SL no.</th>
+ 										<th>Course No.</th>
+ 										<th class="commitee_course">Course Title</th>
+ 										<th class="teacher_select">Teacher Name</th>
+ 										<th>Designation</th>
+ 									</tr>
+ 								</thead>
+
+
+ 								<tbody>
+ 									<tr ng-repeat="course in semester_no.course_teacher">     <!-- ng-repeat="course in courses" -->
+ 										<td>{{$index+1}}</td>
+		 								<td>{{course.course_id}}</td>
+		 								<td>{{courseTitle(course.course_id)}}</td>
+		 								<td class="teacher_select">
+		 									
+												<select class="form-control change select_width" ng-model="teacherName" ng-options="teacher.name for teacher in teacherList" ng-change="assignTeacher(course.course_id,teacherName)">
+													
+												</select>
+											
+		 								</td>
+		 								<td>{{teacherName.designation}}</td>
+		 							</tr>
+ 								</tbody>
+							</table>
+						</div>
+						
+					</form>
+				</div>
+
+				<div class="middle" ng-show="semester_no">
+					<button class="btn btn-default myButton clearBottom" ng-click="goShowCommittee()">Save</button>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,66 @@
+		<div>
+			<div class="container">
+				<div class="col-md-12">
+					<h2 class="text_center" >Exam Committee</h2>
+				</div>
+				<div class="container">
+					<div class="col-md-8 col-md-offset-2" > <!-- ng-repeat -->
+						<div class="center">
+							<label for="session">Session </label>
+							<select name="newCommitee.session" id="session" class="form-control change" ng-model="session">
+								<option ng-repeat="each in allSemester | unique ">{{each}}</option>
+							</select>
+						</div>
+
+						<div class="center">
+							<label for="semester">Semester </label>
+							<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+							</select>
+						</div>
+
+						<div ng-show="semester_no.chairman">
+
+							<div class="center">
+								<label for="chairman">Chairman </label>
+								<div  ng-repeat="teacher in teacherList | filter:{_id: semester_no.chairman}" ng-show="semester_no.chairman" class="chairman">
+									<p class="teacherName">{{teacher.name}}</p>
+									<p class="teacherDesig">{{teacher.designation}}</p>
+									<p class="teacherPhone">{{teacher.phone}}</p>
+									<p class="teacherEmail">{{teacher.email}}</p>
+								</div>
+							</div>
+							<div>
+								<table class="table bottom_margin">
+									<thead>
+	 									<tr>
+	 										<th>SL no.</th>
+	 										<th class="text_align_left">Course No.</th>
+	 										<th class="text_align_left">Course Title</th>
+	 										<th class="teacher_select">Teacher Name</th>
+	 									</tr>
+	 								</thead>
+
+
+	 								<tbody>
+	 									<tr ng-repeat="course in semester_no.course_teacher" >     <!-- ng-repeat="course in courses" -->
+	 										<th>{{$index+1}}</th>
+			 								<td>{{course.course_id}}</td>
+			 								<td>{{courseTitle(course.course_id)}}</td>
+			 								<td class="teacher_select">
+			 									<div  ng-repeat="teacher in teacherList | filter:{_id: course.teacher} " ng-hide="!course.teacher">
+													<p class="teacherName">{{teacher.name}}</p>
+													<p class="teacherDesig">{{teacher.designation}}</p>
+													<p class="teacherPhone">{{teacher.phone}}</p>
+													<p class="teacherEmail">{{teacher.email}}</p>
+												</div>
+			 								</td>
+			 							</tr>
+	 								</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>

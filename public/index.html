@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<title>RPS system</title>
+
+		<link href="css/bootstrap.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+
+		<script src = "js/angular.js"></script>
+		<script src = "js/angular-route.js"></script>
+		<script src = "js/angular-resource.js"></script>
+		<script src = "js/angular-cookies.min.js"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	</head>
+	<body>
+		<div>
+			<header>
+				<div class="container shohidMinar">
+					<div class="col-md-2">
+						<div class="logo">
+							<img src="img/1419751326.jpg" alt="Sust_logo">
+						</div>
+					</div>
+
+
+
+					<nav class="navbar navbar-default nav_Change" ng-show="authenticated">
+						<div class="container-fluid">
+						    <div class="navbar-header">
+						        <a class="navbar-brand" href="#">RPS</a>
+						    </div>
+						    <ul class="nav navbar-nav font_color">
+						        <li><a href="#/">Home</a></li>
+						        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Committee <span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+							            <li><a href="#/setCommittee" ng-show="current_user.role=='admin'">Set Committee</a></li>
+									    <li><a href="#/showCommittee">Show Committee</a></li>
+							        </ul>
+						        </li>
+
+						        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Result <span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+							            <li><a href="#/inputResult" ng-show="current_user.showResultInput">Input Result</a></li>
+									    <li><a href="#/showResult">Show Result</a></li>
+									    <li><a href="#/markSheet">Mark Sheet</a></li>
+									    <li><a href="#/tabulation">Tabulation</a></li>
+							        </ul>
+						        </li>	
+
+						        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Teacher <span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+							            <li><a href="#/teacher/register" ng-show="current_user.role=='admin'">Registration</a></li>
+									    <li><a href="#/teacher/info">Information</a></li>
+							        </ul>
+						        </li>					      
+
+						        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Student <span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+							            <li><a href="#/studentInput" ng-show="current_user.role=='admin' || ">Registration</a></li>
+									    <li><a href="#/students">Information</a></li>
+							        </ul>
+						        </li>
+
+						        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Syllabus <span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+							            <li><a href="#/syllabusInput" ng-show="current_user.role=='admin'">Input</a></li>
+									    <li><a href="#/syllabus">Show</a></li>
+							        </ul>
+						        </li>
+						        
+						        
+						    </ul>
+						    <ul class="nav navbar-nav pull-right changePosition">
+						    	<li>{{current_user.name}} <br> {{current_user.role}}</li>
+						    	<li ng-click="signOut()"><button>SignOUt<button></li>
+						    </ul>
+						</div>
+					</nav>
+				
+					<!-- <nav>
+						<div class="container removePad">
+
+							<div class="col-md-2">
+								<h1>RPS</h1>
+							</div>
+							<div class="col-md-10">
+								<ul class="navigation">
+									<li><a href="">Home</a></li>
+									<li >
+										<a href="#">Committee</a>
+		       							<ul class="drop_menu">
+									       	<li><a href="#/setCommittee">Set Committee</a></li>
+									       	<li><a href="#/showCommittee">Show Committee</a></li>
+									    </ul>
+		       							
+		       							</li>
+										<li>
+											<a href="">Result</a>
+											<ul class="drop_menu">
+									       		<li><a href="#/inputResult">Input Result</a></li>
+									       		<li><a href="#/showResult">Show Result</a></li>
+									    	</ul>
+										</li>
+										<li>
+											<a>Student</a>
+											<ul class="drop_menu">
+									       		<li><a href="#/studentInput">Registration</a></li>
+									       		<li><a href="#/students">Information</a></li>
+									    	</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</nav> -->
+
+				</div>
+			</header>
+			
+		</div>
+
+	<div>{{current_user}}</div>
+		<div ng-view>
+        </div>
+
+		<script src="js/mainjs.js"></script>
+	</body>
+</html>

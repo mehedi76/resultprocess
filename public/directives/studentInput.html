@@ -1,0 +1,60 @@
+	    <div class="container stu_reg">
+	    	<div class="row">
+	    		<h3>Student Registration</h3>
+	    	</div>
+	    </div>
+		
+		<div class="container">
+			<div>
+				<table class="table student_table">
+					<thead>
+ 						<tr>
+ 							<th>Reg. no.<span>*</span></th>
+ 							<th>Name <span>*</span></th>
+ 							<th>Father Name</th>
+ 							<th>Mother Name</th>
+ 							<th>Session<span>*</span></th>
+ 							<th>Email</th>
+ 							<th>Phone</th>
+ 							<th>Address</th>					
+ 						</tr>
+ 					</thead>
+
+
+ 					<tbody>
+ 						<tr ng-repeat="student in students" ng-class="notfound(error)" >
+		 					<td class="change_input"> <input type="text" value="{{student.reg}}" ng-model="student.reg"> </td>
+		 					<td><input type="text" value="{{student.name}}" ng-model="student.name"></td>
+		 					<td><input type="text" value="{{student.father_name}}" ng-model="student.father_name"></td>
+		 					<td><input type="text" value="{{student.mother_name}}" ng-model="student.mother_name"></td>
+		 					<td class="change_input"><input type="text" value="{{student.session}}" ng-model="student.session"></td>
+		 					<td><input type="text" value="{{student.email}}" ng-model="student.email"></td>
+		 					<td class="change_input"><input type="text" value="{{student.phone}}" ng-model="student.phone"></td>
+		 					<td><input type="text" value="{{student.address}}" ng-model="student.address"></td>
+		 					<td><div id="cross_sign" ng-click="deleteStudent(student)"><img src="../img/crossSign.png" alt="" width="15px"></div></td>
+ 						</tr>
+ 					</tbody>
+				</table>
+			</div>
+		</div> <!-- end container -->
+
+		<div class="container bottom_margin">
+			<div class="middle_btn">
+				<div class="circle_btn_out">
+					<button class="btn btn-default circle_btn" ng-click="addStudent()"><img src="img/plus.png" alt="" ></button>
+				</div>
+				<div class="text_div">
+					<p>Add Student</p>
+				</div>
+
+				<div class="excel_panel">
+					<label for="">Excel File</label>
+					<input type="file" file-model = "myFile" value="Choose Excel File">
+					<button class="btn btn-default show_data" ng-click = "uploadFile()">Show Data</button>
+				</div>
+
+				<div>
+					<button class="btn btn-primary myButton save" ng-show='showSave' ng-click="saveStudents()">Save</button>
+				</div>
+			</div>
+		</div>
