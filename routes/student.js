@@ -98,7 +98,7 @@ module.exports = function(router, mongoose) {
 	});
 
 
-
+	
 	return router;
 
 };

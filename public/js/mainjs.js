@@ -743,7 +743,7 @@ app.controller('resultController',function($scope,$http,$location,$timeout,resul
   var hide = true;
   $scope.students = [];
   $scope.resultCalculation = resultCalculation;
-
+  $scope.dropperShow = false;
   var autoSaveTotal = function(reg,total){
 
     var result = {};
@@ -1031,6 +1031,11 @@ $scope.modifyTermNo = function(term_test_modify){
     $location.path('/showResult');
   };
 
+
+$scope.showDropper = function(){
+  $scope.dropperShow = true;
+  console.log("droper show....................");
+};
 
 });
 

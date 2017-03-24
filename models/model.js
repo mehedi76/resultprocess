@@ -151,6 +151,58 @@ var reultBase = new mongoose.Schema({
 
 
 
+var dropperSchema = new mongoose.Schema({
+	course_id: {
+		type: String,
+		ref: "Course"
+	},
+	reg: {
+		type : String,
+		ref: "Student"
+	},
+	attendence: {
+		type : Number,
+		default: 0
+	},
+	term_test: {
+		type : Number,
+		default: 0
+	},
+	theory: {
+		type : Number,
+		default: 0
+	},
+	lab: {
+		type : Number,
+		default: 0
+	},
+	total: {
+		type: Number,
+		default: 0
+	},
+	total_class: {
+		type : Number,
+		default: 0
+	},
+	theory_modify: {
+		type : Number,
+		default: 0
+	},
+	lab_modify: {
+		type : Number,
+		default: 0
+	},
+	term_test_modify: {
+		type : Number,
+		default: 0
+	},
+	
+	created_at: { 
+		type: Date, 
+		default: Date.now
+	}
+});
+
 //----------Course offer Schema--------------
 
 var commiteeSchema = new mongoose.Schema({
@@ -175,7 +227,7 @@ var commiteeSchema = new mongoose.Schema({
 
 
 mongoose.model('User',teacherSchema); 
-
+mongoose.model('Dropper',dropperSchema);
 mongoose.model('Course',courseSchema);
 mongoose.model('Student',studentSchema);
 mongoose.model('Result',resultSchema);

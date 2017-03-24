@@ -3,7 +3,8 @@ module.exports = function(router, mongoose) {
 	var Result = mongoose.model('Result');
 	var ResultBase = mongoose.model('ResultBase');
 	var Student = mongoose.model('Student');
-	var Committee = mongoose.model('Committee')
+	var Committee = mongoose.model('Committee');
+	var Dropper = mongoose.model('Dropper');
 	
 	router.route('/teacher/input/result')
 
@@ -614,6 +615,51 @@ router.route('/student/result/name/:reg')
 			return res.json(data);
 		});
 	});
+
+
+
+	router.route('/student/droppers')
+
+	.get(function(req,res){
+
+		Dropper.find({reg:req.body.reg},function(err,results){
+			if(err){
+				console.log("Error during dropper result retriving.................");
+				res.status(500).send(err);
+			}
+			if(!results){
+				console.log("Result is not found.....................");
+			}
+			return res.json(results);
+		});
+	})
+	.post(function(req,res){
+		var newDropper = new Dropper();
+
+		newDropper.course_id = req.body.course_id;
+		newDropper.reg = req.body.reg;
+		newDropper.attendence = req.body.attendence;
+		newDropper.term_test = req.body.term_test;
+		newDropper.theory = req.body.theory;
+		newDropper.lab =req.body.lab;
+		newDropper.total = req.body.total;
+		newDropper.total_class = req.body.total_class;
+		newDropper.theory_modify = req.body.theory_modify;
+		newDropper.lab_modify =req.body.lab_modify;
+		newDropper.term_test_modify = req.body.term_test_modify;
+		
+		newDropper.save(function(err,newResult){
+
+			if(err){
+				console.log("Error during dropper result saving.................");
+				res.status(500).send(err);
+			}
+
+			res.json(newResult);
+		});
+
+	});
+
 
 
 	return router;

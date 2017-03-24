@@ -78,9 +78,72 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<div class="container">
+			
 			</div>
-			<div class="middle">
-				<button class="btn btn-default myButton bottom_margin" ng-show="hideOrShow()" ng-click="saveBtn()">Save</button>
+			</div>
+
+
+			<div class="container" ng-show="dropperShow" sytle="margin-top:40px;">
+				<table class="table result_input_table">
+					<thead>
+						<tr>
+							<th rowspan="2">SL No.</th>
+							<th rowspan="2">Reg. No.</th>
+							<th rowspan="2" style="text-align: left">Name</th>
+							<th rowspan="2">Performance</th>
+							<th rowspan="2">Term Test</th>
+							<th colspan="2"></th>
+							<th rowspan="2">Total</th>
+						</tr>
+						<tr>
+							<th>Theory</th>
+							<th ng-show="courseDetail.lab!=='0'">Lab</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						<tr ng-repeat="student in droppers | orderBy: 'reg'">
+							<td>{{$index + 1}}</td>
+							<td text_align_left class="dropInput"><input type="text" class="modify_result" ></td>
+							<td text_align_left>{{student.student[0].name}}</td>
+
+							<td><input type="number"  class="modify_result" ng-model="student.attendence" ng-blur="autoSaveAttendance(student.reg,student.attendence)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.term_test" ng-blur="autoSaveTerm(student.reg,student.term_test)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.theory" ng-blur="autoSaveTheory(student.reg,student.theory)" ng-change="totalResult(student)"></td>
+
+							<td><input type="number" class="modify_result" ng-model="student.lab" ng-blur="autoSaveLab(student.reg,student.lab)" ng-change="totalResult(student)" ng-show="courseDetail.lab!=='0'"></td>
+
+							<td ><input type="text" class="modify_result" ng-model="student.total" disabled></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="middle_btn center_button clearBottom" ng-show="hideOrShow()" >
+
+						<div class="circle_btn_out">
+							<button class="btn btn-default circle_btn" ng-click="showDropper()"><img src="img/plus.png" alt=""></button>
+						</div>
+						<div class="text_div text_Dropper_div">
+							<p>Add Dropper Students</p>
+						</div>
+
+						<div>
+							<button class="btn btn-primary myButton save"  ng-click="save()" ng-show="showSave">Save</button>
+						</div>
+					</div>				
+				</div>
+				<div class="row">
+					<div class="middle">
+						<button class="btn btn-default myButton bottom_margin" ng-show="hideOrShow()" ng-click="saveBtn()">Save</button>
+					</div>
+				</div>
 			</div>
 
 
