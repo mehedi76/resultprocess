@@ -473,7 +473,13 @@ app.controller('authentication',function($scope,$http,$rootScope,$location,$cook
 
 app.controller('welcomeController',function($scope,$http,$rootScope,$location){
 
+ if(!$rootScope.authenticated){
+  console.log("not authenticated")
+  $location.path('/login');
 
+ }else{
+  console.log("Not pass to rootScope");
+ }
 
 });
 
