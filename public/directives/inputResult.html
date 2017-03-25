@@ -63,7 +63,7 @@
 					<tbody>
 						<tr ng-repeat="student in students | orderBy: 'reg'">
 							<td>{{$index + 1}}</td>
-							<td text_align_left>{{student.reg}}</td>
+							<td text_align_left >{{student.reg}}</td>
 							<td text_align_left>{{student.student[0].name}}</td>
 
 							<td><input type="number"  class="modify_result" ng-model="student.attendence" ng-blur="autoSaveAttendance(student.reg,student.attendence)" ng-change="totalResult(student)"></td>
@@ -104,20 +104,20 @@
 						
 					</thead>
 					<tbody>
-						<tr ng-repeat="student in droppers | orderBy: 'reg'">
+						<tr ng-repeat="dropper in dropperStudents">
 							<td>{{$index + 1}}</td>
-							<td text_align_left class="dropInput"><input type="text" class="modify_result" ></td>
-							<td text_align_left>{{student.student[0].name}}</td>
+							<td text_align_left class="dropInput" ><input type="text" sytle="border-width:0px; background-color:#ccc;"  ng-model= "dropper.reg" ng-change="findName(dropper)"></td>
+							<td text_align_left>{{dropper.name}}</td>
 
-							<td><input type="number"  class="modify_result" ng-model="student.attendence" ng-blur="autoSaveAttendance(student.reg,student.attendence)" ng-change="totalResult(student)"></td>
+							<td><input type="number"  class="modify_result" ng-model="dropper.attendence" ng-change="calculateTotalResult(dropper)"></td>
 
-							<td><input type="number" class="modify_result" ng-model="student.term_test" ng-blur="autoSaveTerm(student.reg,student.term_test)" ng-change="totalResult(student)"></td>
+							<td><input type="number" class="modify_result" ng-model="dropper.term_test" ng-change="calculateTotalResult(dropper)"></td>
 
-							<td><input type="number" class="modify_result" ng-model="student.theory" ng-blur="autoSaveTheory(student.reg,student.theory)" ng-change="totalResult(student)"></td>
+							<td><input type="number" class="modify_result" ng-model="dropper.theory" ng-change="calculateTotalResult(dropper)"></td>
 
-							<td><input type="number" class="modify_result" ng-model="student.lab" ng-blur="autoSaveLab(student.reg,student.lab)" ng-change="totalResult(student)" ng-show="courseDetail.lab!=='0'"></td>
+							<td><input type="number" class="modify_result" ng-model="dropper.lab" ng-change="calculateTotalResult(dropper)" ng-show="courseDetail.lab!=='0'"></td>
 
-							<td ><input type="text" class="modify_result" ng-model="student.total" disabled></td>
+							<td ><input type="text" class="modify_result" ng-model="dropper.total" disabled></td>
 						</tr>
 					</tbody>
 				</table>
@@ -127,21 +127,29 @@
 				<div class="row">
 					<div class="middle_btn center_button clearBottom" ng-show="hideOrShow()" >
 
-						<div class="circle_btn_out">
+						<div class="circle_btn_out" ng-hide="dropperShow">
 							<button class="btn btn-default circle_btn" ng-click="showDropper()"><img src="img/plus.png" alt=""></button>
 						</div>
-						<div class="text_div text_Dropper_div">
+						<div class="text_div text_Dropper_div" ng-hide="dropperShow">
 							<p>Add Dropper Students</p>
 						</div>
 
-						<div>
-							<button class="btn btn-primary myButton save"  ng-click="save()" ng-show="showSave">Save</button>
+
+						<div class="circle_btn_out" ng-show="dropperShow">
+							<button class="btn btn-default circle_btn" ng-click="addDropper()"><img src="img/plus.png" alt=""></button>
 						</div>
-					</div>				
+						<div class="text_div text_Dropper_div" ng-show="dropperShow">
+							<p>Add Student</p>
+						</div>
+
+						<!-- <div>
+							<button class="btn btn-primary myButton save"  ng-click="save()" ng-show="dropperShow">Save</button>
+						</div>
+ -->					</div>				
 				</div>
 				<div class="row">
 					<div class="middle">
-						<button class="btn btn-default myButton bottom_margin" ng-show="hideOrShow()" ng-click="saveBtn()">Save</button>
+						<button class="btn btn-primary myButton bottom_margin" ng-show="hideOrShow()" ng-click="saveBtn()">Save</button>
 					</div>
 				</div>
 			</div>

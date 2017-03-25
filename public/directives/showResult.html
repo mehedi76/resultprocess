@@ -71,4 +71,41 @@
 			</div>
 
 
+
+
+
+
+			<div class="container" ng-show="dropperShow">
+				<table class="table result_input_table clearBottom"">
+					<thead>
+						<tr>
+							<th>SL No.</th>
+							<th>Reg. No.</th>
+							<th class="text_align_left">Name</th>
+							<th>Performance</th>
+							<th>Term Test</th>
+							<th>Final</th>
+							<th style="margin-left:10px">Total</th>
+							<th>Grade Point</th>
+							<th>Grade Letter</th>
+						</tr>
+						
+					</thead>
+					<tbody>
+						<tr ng-repeat="dropper in dropperStudents | orderBy: 'reg'">
+							<td>{{$index +1}}</td>
+							<td class="text_align_left">{{dropper.reg}}</td>
+							<td class="text_align_left">{{dropper.name}}</td>
+							<td>{{resultCalculation.attendenceMark(dropper.attendence,baseResult.total_class)}}</td>
+							<td>{{dropper.term_test}}</td>
+							<td>{{resultCalculation.finalExam(dropper.theory + dropper.lab, baseResult.theory_modify + baseResult.lab_modify)}}</td>
+							<td style="margin-left:10px">{{dropper.total}}</td>
+							<td>{{ grade = resultCalculation.gradePoint(dropper.total)}}</td>
+							<td>{{ resultCalculation.gradeLetter(grade)}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
 		</div>

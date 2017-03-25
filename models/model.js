@@ -156,6 +156,12 @@ var dropperSchema = new mongoose.Schema({
 		type: String,
 		ref: "Course"
 	},
+	exam_session: {
+		type: String,
+	},
+	exam_semester_no: {
+		type: Number
+	},
 	reg: {
 		type : String,
 		ref: "Student"

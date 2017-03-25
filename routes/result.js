@@ -634,33 +634,111 @@ router.route('/student/result/name/:reg')
 		});
 	})
 	.post(function(req,res){
-		var newDropper = new Dropper();
 
-		newDropper.course_id = req.body.course_id;
-		newDropper.reg = req.body.reg;
-		newDropper.attendence = req.body.attendence;
-		newDropper.term_test = req.body.term_test;
-		newDropper.theory = req.body.theory;
-		newDropper.lab =req.body.lab;
-		newDropper.total = req.body.total;
-		newDropper.total_class = req.body.total_class;
-		newDropper.theory_modify = req.body.theory_modify;
-		newDropper.lab_modify =req.body.lab_modify;
-		newDropper.term_test_modify = req.body.term_test_modify;
-		
-		newDropper.save(function(err,newResult){
-
-			if(err){
+		Dropper.findOne({
+			reg: req.body.reg,
+  			course_id : req.body.course_id,
+			exam_session : req.body.exam_session,
+			exam_semester_no : req.body.exam_semester_no
+  		},function(err,result){
+  			if(err){
 				console.log("Error during dropper result saving.................");
 				res.status(500).send(err);
 			}
 
-			res.json(newResult);
-		});
+			if(!result){
+				console.log("................ come to create ............dropper result: ");
+
+				var newDropper = new Dropper();
+
+				newDropper.course_id = req.body.course_id;
+				newDropper.reg = req.body.reg;
+				newDropper.exam_session = req.body.exam_session;
+				newDropper.exam_semester_no = req.body.exam_semester_no;
+				newDropper.attendence = req.body.attendence;
+				newDropper.term_test = req.body.term_test;
+				newDropper.theory = req.body.theory;
+				newDropper.lab =req.body.lab;
+				newDropper.total = req.body.total;
+				newDropper.total_class = req.body.total_class;
+				newDropper.theory_modify = req.body.theory_modify;
+				newDropper.lab_modify =req.body.lab_modify;
+				newDropper.term_test_modify = req.body.term_test_modify;
+
+				console.log("Dropper result entry..................................."+ newDropper);
+				
+				newDropper.save(function(err,newResult){
+
+					if(err){
+						console.log("Error during dropper result saving.................");
+						res.status(500).send(err);
+					}else{
+						console.log("New dropper result save Successfully..............");
+					}
+
+					res.json(newResult);
+				});
+			}else{
+				console.log("................ come to update ............dropper result: ");
+				Dropper.update({
+					reg: req.body.req,
+		  			course_id : req.body.course_id,
+					exam_session : req.body.exam_session,
+					exam_semester_no : req.body.exam_semester_no
+				},{
+					$set:{
+						attendence : req.body.attendence,
+						term_test : req.body.term_test,
+						theory : req.body.theory,
+						lab :req.body.lab,
+						total : req.body.total,
+						total_class : req.body.total_class,
+						theory_modify : req.body.theory_modify,
+						lab_modify :req.body.lab_modify,
+						term_test_modify : req.body.term_test_modify
+
+						}
+				},function(err,result){
+
+					if(err){
+						console.log("Error during result searching............");
+						res.status(500).send(err);
+					}
+						console.log("................ Update............ total_class: " + result.total_class);
+
+						return res.json(result);
+					});
+			}
+  		});
+
+		
 
 	});
 
+  router.route('/student/droppers/:session/:semester_no/:course_id')
 
+  .get(function(req,res){
+  	Dropper.find({
+  		course_id : req.params.course_id,
+		exam_session : req.params.session,
+		exam_semester_no : req.params.semester_no
+  	},function(err,allResult){
+  		if(err){
+				console.log("Error in finding Dropper resultBase............................");
+				return res.status(500).send(err);
+			}
+
+			if(!allResult){
+				console.log("Data is not found in Dropper resultBase............................");
+				return res.json({
+					status: "Not found"
+				});
+			}
+			console.log("Dropper.................get requenst..........."+ allResult);
+			return res.json(allResult);
+  	});
+
+  });
 
 	return router;
 };

@@ -418,12 +418,7 @@ app.service('resultData',function($http){
 
 
 
-
-
-
 app.controller('authentication',function($scope,$http,$rootScope,$location,$cookieStore){
-
-   
 
     
 
@@ -865,6 +860,20 @@ var studentBatch =  function() {
 
            $scope.students =  data;
             console.log("get all result from database ....................." + $scope.students);
+
+            $http.get('/api/student/droppers/'+$scope.session+'/'+$scope.semester_no.semester_no+'/'+$scope.course_id.course_id)
+              .success(function(data){
+                console.log("the data of droppers result found..................."+ data);
+                if(data.length !== 0){
+                  $scope.dropperStudents = data;
+                  $scope.dropperShow = true;
+
+                  angular.forEach($scope.dropperStudents,function(value,key){
+                    $scope.findName(value);
+                    console.log("Tthe vcalue cname ...................."+value.name);
+                  });
+                }
+              });
         }
                 
         }).error(function(err){
@@ -1030,6 +1039,28 @@ $scope.modifyTermNo = function(term_test_modify){
   };
 
   $scope.saveBtn = function(){
+
+    console.log(".............check...............session + semester_no." + typeof($scope.session) + typeof($scope.semester_no.semester_no))
+
+    angular.forEach($scope.dropperStudents,function(value,key){
+      value.course_id = $scope.course_id.course_id;
+      value.exam_session = $scope.session;
+      value.exam_semester_no = $scope.semester_no.semester_no;
+      value.total_class = $scope.baseResult.total_class;
+      value.theory_modify = $scope.baseResult.theory_modify;
+      value.lab_modify = $scope.baseResult.lab_modify;
+      value.term_test_modify = $scope.baseResult.term_test_modify;
+
+      $http.post('/api/student/droppers',value)
+          .success(function(data){
+            console.log("successfully input droppers result..................");
+           })
+          .error(function(err) {
+             console.log(err);
+       }); 
+
+    });
+
      console.log("redirect to show students.......");
      resultData.session = $scope.session;
      resultData.semester = $scope.semester_no.semester_no;
@@ -1038,10 +1069,60 @@ $scope.modifyTermNo = function(term_test_modify){
   };
 
 
+$scope.findName = function(student){
+
+  var studentIndex = $scope.dropperStudents.indexOf(student);
+
+  $http.get('/api/student/'+student.reg).success(function(data){
+    console.log("find name working........................................"+data.name);
+    $scope.dropperStudents[studentIndex].name = data.name;
+  });
+};
+
 $scope.showDropper = function(){
   $scope.dropperShow = true;
   console.log("droper show....................");
 };
+
+
+$scope.dropperStudents = [];
+
+$scope.addDropper = function(){
+  var dropper = {
+    reg:"",
+    name: "",
+    attendence: 0,
+    term_test: 0,
+    theory: 0,
+    lab: 0,
+    total: 0
+  };
+
+  $scope.dropperStudents.push(dropper);
+  //console.log("droper show....................");
+};
+
+
+
+$scope.calculateTotalResult = function(student){
+
+    var studentIndex = $scope.dropperStudents.indexOf(student);
+
+    var classPerformance = resultCalculation.attendenceMark($scope.dropperStudents[studentIndex].attendence,$scope.baseResult.total_class);
+
+    var termTest = resultCalculation.termTestMark($scope.dropperStudents[studentIndex].term_test,$scope.baseResult.term_test_modify);
+
+    var theoryLab = $scope.dropperStudents[studentIndex].theory + $scope.dropperStudents[studentIndex].lab;
+    var theoryLabModify = $scope.baseResult.theory_modify + $scope.baseResult.lab_modify;
+
+    var final_result = resultCalculation.finalExam(theoryLab,theoryLabModify);
+
+    console.log("................................ The total result is : performance" + classPerformance + " term: " + termTest + " final: " + final_result);
+
+    $scope.dropperStudents[studentIndex].total = Math.round((classPerformance +  termTest + final_result) * 100) / 100;
+
+  };
+
 
 });
 
