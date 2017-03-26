@@ -620,19 +620,6 @@ router.route('/student/result/name/:reg')
 
 	router.route('/student/droppers')
 
-	.get(function(req,res){
-
-		Dropper.find({reg:req.body.reg},function(err,results){
-			if(err){
-				console.log("Error during dropper result retriving.................");
-				res.status(500).send(err);
-			}
-			if(!results){
-				console.log("Result is not found.....................");
-			}
-			return res.json(results);
-		});
-	})
 	.post(function(req,res){
 
 		Dropper.findOne({
@@ -714,6 +701,25 @@ router.route('/student/result/name/:reg')
 		
 
 	});
+
+
+  router.route('/student/droppers/:reg')
+
+  .get(function(req,res){
+
+		Dropper.find({reg:req.params.reg},function(err,results){
+			if(err){
+				console.log("Error during dropper result retriving.................");
+				res.status(500).send(err);
+			}
+			if(!results){
+				console.log("Result is not found.....................");
+			}
+			return res.json(results);
+		});
+	});
+
+
 
   router.route('/student/droppers/:session/:semester_no/:course_id')
 

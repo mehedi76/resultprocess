@@ -589,6 +589,7 @@ app.controller('markSheetCtrl',function($scope,$http,resultCalculation){
 
   $scope.resultCalculation = resultCalculation;
   $scope.courses = [];
+  $scope.dropResults = [];
   var totalCredit = 0;
   var semesterCredit = 0;
   var semesterGradePoint = 0;
@@ -633,6 +634,9 @@ var studentInfo = function(reg){
             studentInfo(reg);
             $scope.courses = data;
             $scope.show = true;
+            getDropResults(reg);
+
+         
 
         }else{
             //console.log("esle" + data);           
@@ -640,34 +644,70 @@ var studentInfo = function(reg){
     });
   };
 
+var getDropResults = function(reg){
+  //..................check drop courses.................
+      if(reg.length === 10){
+        $http.get('/api/student/droppers/'+reg).success(function(result){
+          console.log("...................................................dropper result found..............");
+          if(result !== undefined){
+            $scope.dropCourseFound = true;
+            $scope.dropResults = result;
+            angular.forEach($scope.dropResults,function(value,key){
+              getCourseDetails(value);
+            });
+            console.log(result);
+            console.log(".........................................dropper result found in undeffed..............");
+          }
+        });
+      }
+};
+
+
+
+
+var getCourseDetails = function(eachDropper){
+ 
+  var studentIndex = $scope.dropResults.indexOf(eachDropper);
+
+  $http.get('/api//course/'+eachDropper.course_id).success(function(data){
+    console.log("find name working........................................"+data.name);
+    $scope.dropResults[studentIndex].title = data.title;
+    $scope.dropResults[studentIndex].credit = data.credit;
+  });
+};
+
+
+
+
+
 $scope.thisSemesterCredit = function(semester,value){
 
   semesterCredit = 0;
   semesterGradePoint = 0;
   semester = parseInt(semester,10);
 
-  console.log("the semester no is : " + semester);
+  //console.log("the semester no is : " + semester);
 
   angular.forEach($scope.terms,function(value,key){
 
-      console.log("The key is : " + key);
+      //console.log("The key is : " + key);
 
       if(value.semester_no === semester){
 
-        console.log("Hello value " + value.semester_no + " length" + value.course_teacher.length);
+       // console.log("Hello value " + value.semester_no + " length" + value.course_teacher.length);
 
       angular.forEach(value.course_teacher,function(semesterCourse,index){
 
-        console.log("semster course: " + semesterCourse.course_id);
+       // console.log("semster course: " + semesterCourse.course_id);
 
         angular.forEach($scope.courses,function(course,indexKey){
 
-            console.log("course........" + course.course_id);
+           // console.log("course........" + course.course_id);
             if(course.course_id === semesterCourse.course_id){
-               console.log("Found: " + course.course_id);
+              // console.log("Found: " + course.course_id);
                semesterCredit = semesterCredit + parseInt(course.courseInfo[0].credit,10);
                semesterGradePoint = semesterGradePoint + parseInt(course.courseInfo[0].credit,10) *  resultCalculation.gradePoint(course.total);
-               console.log("credit: " + semesterCredit + "total gpa: " + semesterGradePoint);
+               //console.log("credit: " + semesterCredit + "total gpa: " + semesterGradePoint);
             }
         });
       });
@@ -690,29 +730,29 @@ $scope.cumulativeCredit = function(semester,value){
   semesterGradePoint = 0;
   semester = parseInt(semester,10);
 
-  console.log("the semester no is : " + semester);
+  //console.log("the semester no is : " + semester);
 
   angular.forEach($scope.terms,function(value,key){
 
-      console.log("The key is : " + key);
+    //  console.log("The key is : " + key);
 
       if(value.semester_no <= semester){
 
-        console.log("Hello value " + value.semester_no + " length" + value.course_teacher.length);
+     ////   console.log("Hello value " + value.semester_no + " length" + value.course_teacher.length);
 
       angular.forEach(value.course_teacher,function(semesterCourse,index){
 
-        console.log("semster course: " + semesterCourse.course_id);
+        //console.log("semster course: " + semesterCourse.course_id);
 
         angular.forEach($scope.courses,function(course,indexKey){
 
-            console.log("course........" + course.course_id);
+//console.log("course........" + course.course_id);
             if(course.course_id === semesterCourse.course_id){
-               console.log("Found: " + course.course_id);
+              // console.log("Found: " + course.course_id);
                if(course.total>=40){
                  semesterCredit = semesterCredit + parseInt(course.courseInfo[0].credit,10);
                  semesterGradePoint = semesterGradePoint + parseInt(course.courseInfo[0].credit,10) *  resultCalculation.gradePoint(course.total);
-                 console.log("credit: " + semesterCredit + "total gpa: " + semesterGradePoint);
+                // console.log("credit: " + semesterCredit + "total gpa: " + semesterGradePoint);
                }
             }
         });
@@ -731,6 +771,11 @@ $scope.cumulativeCredit = function(semester,value){
 $scope.roundNum = function(num){
   return Math.round(num * 100) / 100;
 };
+
+
+
+
+
 
 
 });

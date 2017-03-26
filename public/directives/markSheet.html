@@ -199,6 +199,55 @@
 			</div>
 
 
+			<!--ONly for dropper Students resutl show in this html contents-->
+
+			<div class="container">
+				<div class="t_table_center" ng-show="dropCourseFound">
+					
+					<div class="termLeft">
+						<h4>Drop Courses</h4>
+					</div>
+
+					<table class="mark_table">
+						<thead>
+							<tr>
+								<th rowspan="2">Course no.</th>
+								<th rowspan="2" class="m_title">Course Title</th>
+								<th rowspan="2">Credit</th>
+								<th colspan="2" class="m_grade">Grade Obtaioned</th>
+							</tr>
+							<tr>
+								
+								<th>Grade Point</th>
+								<th>Letter Grade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="eachResult in dropResults">
+								<td>{{eachResult.course_id}}</td>
+								<td>{{eachResult.title}}</td>
+								<td>{{eachResult.credit}}</td>
+								<td>{{grade = resultCalculation.gradePoint(eachResult.total)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="m_right_text">This semester Total</th>
+								<td >{{totalGrade = thisSemesterCredit(term.semester_no,1)}}</td>
+								<td>{{grade = roundNum(thisSemesterCredit(term.semester_no,2) / totalGrade)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="m_right_text">Cumulative</th>
+								<td >{{cumulativeGrade = cumulativeCredit(term.semester_no,1)}}</td>
+								<td>{{grade = roundNum(cumulativeCredit(term.semester_no,2) / cumulativeGrade)}}</td>
+								<td>{{resultCalculation.gradeLetter(grade)}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
 			<div class="onlyPrint" ng-show="show">
 				<div class="container">
 					<div class="row row_distance">
