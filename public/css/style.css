@@ -279,6 +279,8 @@ label{
 .result_input_table > tbody > tr > td{
 	text-align: center;
 }
+
+
 .result_input_table > tbody > tr > td:nth-child(3){
 	text-align: left;
 }
@@ -497,6 +499,8 @@ input[type=number]:focus{
 }
 .dropInput>input{
 	width: 70px;
+	background-color: #ccc;
+    border-width: 0px;
 }
 .middle_btn{
 	margin-top: 40px;

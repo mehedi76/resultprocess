@@ -870,7 +870,7 @@ var studentBatch =  function() {
 
                   angular.forEach($scope.dropperStudents,function(value,key){
                     $scope.findName(value);
-                    console.log("Tthe vcalue cname ...................."+value.name);
+                    //console.log("Tthe vcalue cname ...................."+value.name);
                   });
                 }
               });
@@ -1102,6 +1102,10 @@ $scope.addDropper = function(){
   //console.log("droper show....................");
 };
 
+$scope.deleteDropperStudent = function(student){
+    var studentIndex = $scope.dropperStudents.indexOf(student);
+    $scope.dropperStudents.splice(studentIndex,1);
+  };
 
 
 $scope.calculateTotalResult = function(student){
