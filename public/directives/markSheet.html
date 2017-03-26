@@ -232,14 +232,14 @@
 							</tr>
 							<tr>
 								<th colspan="2" class="m_right_text">This semester Total</th>
-								<td >{{totalGrade = thisSemesterCredit(term.semester_no,1)}}</td>
-								<td>{{grade = roundNum(thisSemesterCredit(term.semester_no,2) / totalGrade)}}</td>
+								<td >{{totalGrade = dropCredit()}}</td>
+								<td>{{grade = roundNum( dropGrade() / totalGrade)}}</td>
 								<td>{{resultCalculation.gradeLetter(grade)}}</td>
 							</tr>
 							<tr>
 								<th colspan="2" class="m_right_text">Cumulative</th>
-								<td >{{cumulativeGrade = cumulativeCredit(term.semester_no,1)}}</td>
-								<td>{{grade = roundNum(cumulativeCredit(term.semester_no,2) / cumulativeGrade)}}</td>
+								<td >{{cumulativeGrade = dropCumulativeCredit(1)}}</td>
+								<td>{{grade = roundNum(dropCumulativeCredit(2) / cumulativeGrade)}}</td>
 								<td>{{resultCalculation.gradeLetter(grade)}}</td>
 							</tr>
 						</tbody>

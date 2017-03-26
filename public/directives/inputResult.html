@@ -49,13 +49,13 @@
 							<th>Modify</th>
 							<th></th>
 							<th></th>
-							<th><input type="number" class="modify_result text" ng-model="baseResult.total_class" ng-blur="modifyPerformance(baseResult.total_class)"></th>
+							<th><input type="number" class="modify_result text" ng-model="baseResult.total_class" ng-blur="modifyPerformance(baseResult.total_class)" placeholder="00"></th>
 
-							<th><input type="number" class="modify_result text" ng-model="baseResult.term_test_modify" ng-blur="modifyTermNo(baseResult.term_test_modify)"></th>
+							<th><input type="number" class="modify_result text" ng-model="baseResult.term_test_modify" ng-blur="modifyTermNo(baseResult.term_test_modify)" placeholder="00"></th>
 
-							<th><input type="number" class="modify_result text" ng-model="baseResult.theory_modify" ng-blur="modifyThory(baseResult.theory_modify)"></th>
+							<th><input type="number" class="modify_result text" ng-model="baseResult.theory_modify" ng-blur="modifyThory(baseResult.theory_modify)" placeholder="00"></th>
 
-							<th><input type="number" step="any" class="modify_result text" ng-model="baseResult.lab_modify" ng-blur="modifyLab(baseResult.lab_modify)" ng-show="courseDetail.lab!=='0'"></th>
+							<th><input type="number" step="any" class="modify_result text" ng-model="baseResult.lab_modify" ng-blur="modifyLab(baseResult.lab_modify)" ng-show="courseDetail.lab!=='0'" placeholder="00"></th>
 
 							<th></th>
 						</tr>
@@ -106,7 +106,7 @@
 					<tbody>
 						<tr ng-repeat="dropper in dropperStudents">
 							<td>{{$index + 1}}</td>
-							<td text_align_left class="dropInput" ><input type="text" sytle="border-width:0px; background-color:#ccc;"  ng-model= "dropper.reg" ng-change="findName(dropper)"></td>
+							<td text_align_left class="dropInput" ><input type="text" sytle="border-width:0px; background-color:#ccc;"  ng-model= "dropper.reg" ng-change="findName(dropper)" placeholder="Reg. No."></td>
 							<td text_align_left>{{dropper.name}}</td>
 
 							<td><input type="number"  class="modify_result" ng-model="dropper.attendence" ng-change="calculateTotalResult(dropper)"></td>

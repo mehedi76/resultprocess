@@ -74,8 +74,15 @@
 						        
 						    </ul>
 						    <ul class="nav navbar-nav pull-right changePosition">
-						    	<li>{{current_user.name}} <br> {{current_user.role}}</li>
-						    	<li ng-click="signOut()"><button>SignOUt<button></li>
+						    	
+						    	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">{{current_user.name}} <br> {{current_user.designation + " | (" + current_user.role +") "}}<span class="caret"></span></a>
+							        <ul class="dropdown-menu">
+
+							        	<li><a href="#/changePassword">Change Password</a></li>
+							            <li ng-click="signOut()"><a href="">Sign out</a></li>
+								    </ul>
+						        </li>
+						    	
 						    </ul>
 						</div>
 					</nav>
