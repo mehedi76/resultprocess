@@ -32,7 +32,7 @@ app.config(function($routeProvider) {
   })
 
   .when('/changePassword', {
-    templateUrl: 'directives/changePassword.html',
+    templateUrl: 'directives/changePasswordPage.html',
     controller: 'changePassword'
   })
     .when('/setCommittee', {
@@ -511,7 +511,18 @@ app.controller('welcomeController',function($scope,$http,$rootScope,$location){
 
 app.controller('changePassword',function($scope,$http,$rootScope,$location){
 
-
+  $scope.user = {};
+  console.log("..........................." + $rootScope.current_user.username);
+  $scope.user.username = $rootScope.current_user.username;
+  console.log(".............." + $scope.user.username + ".........."+ $scope.user.password);
+  $scope.changeOldPassword = function(){
+    console.log("The ........change apasdwwwod ren");
+    $http.post('/api/changepassword',$scope.user).success(function(data){
+      if(data.length !== 0){
+        $rootScope.signOut();
+      }
+    });
+  };
 
 });
 

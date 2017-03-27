@@ -271,6 +271,43 @@ router.route('/teacher/checkUser/:username')
 		});
 	});
 
+//----------------------change Password-------------------------------
+
+router.route('/changepassword')
+
+    .post(function(req,res){
+
+    	var createHash = function(password){
+        	return bCrypt.hashSync(password, bCrypt.genSaltSync(10),null);
+        };
+
+    	var newPassword = createHash(req.body.newPassword);
+
+    	console.log("..............user: " + req.body.username + "..............password: "+ req.body.password + ".......newpass: " + req.body.newPassword);
+    	console.log("....................newPassword: " + newPassword);
+
+        User.update({
+                username:req.body.username
+            },{
+                $set:{
+                    password: newPassword 
+                }
+            },function(err,user){
+                if(err){
+                    console.log("Error during commitee updating...............");
+                    return res.status(500).send(err);
+                }
+
+                if(!user){
+                    console.log("data is not updata..............");
+                    return res.status(500).send({
+                        status: "Not found."
+                    });
+                }
+                console.log("......................change password..............");
+                return res.json(user);
+        });
+    });
 
 
 
