@@ -13,12 +13,13 @@
 						</select>
 					</div>
 
-
+				
 					<div class="each_div each_div_middle">
 						<label for="semester" class="label_margin_remove">Semester</label>
-						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no'" >								
+						<select name="newCommitee.semester" id="semester" class="form-control change change_semester" ng-model='semester_no' ng-options="term.semester_no for term in terms | orderBy: 'semester_no' | semesterFilter:current_user._id:current_user.role" >								
 						</select>
 					</div>
+
 					
 					<div class="each_div each_div_last">
 						<label for="course" class="label_margin_remove">Course</label>

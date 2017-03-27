@@ -108,6 +108,25 @@ app.filter("findCourse",function(){
   };
 });
 
+app.filter("semesterFilter",function($http){
+  return function(array,id,role){
+      var semesters = [];
+         
+      if(role === "admin"){
+        semesters = array;
+      }else{
+        angular.forEach(array,function(value,key){
+          if(value.chairman === id){
+            semesters.push(value);
+          }
+        });
+      }
+      console.log(semesters);
+      return semesters;
+  };
+});
+
+
 app.filter('unique',function(){
   return function(array){
     var uniqueArray = [];
@@ -445,16 +464,20 @@ app.controller('authentication',function($scope,$http,$rootScope,$location,$cook
           $scope.allcommitee = data; 
           console.log("Hello........................"+ $scope.allcommitee[0].chairman);  
 
+          var loopRun = true;
           angular.forEach($scope.allcommitee,function(value,key){
             
-            if(value.chairman == $rootScope.current_user._id || $rootScope.current_user.role == "admin"){
-                console.log("Yes it work");
-                $rootScope.current_user.showResultInput = true;
-            }else{
-                $rootScope.current_user.showResultInput = false;
-            }
-            
-            $cookieStore.put("user",$rootScope.current_user);
+            if(loopRun){
+              if(value.chairman === $rootScope.current_user._id || $rootScope.current_user.role === "admin"){
+                  console.log("Yes it work");
+                  $rootScope.current_user.showResultInput = true;
+                  loopRun = false;
+              }else{
+                  $rootScope.current_user.showResultInput = false;
+              }
+              
+              $cookieStore.put("user",$rootScope.current_user);
+              }
           });       
        });
         
