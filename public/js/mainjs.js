@@ -6,9 +6,15 @@ var app = angular.module('myApp', ['ngRoute','ngResource','ngCookies']).run(func
    console.log("From the run funtjion :     "+ $rootScope.current_user);
     $rootScope.authenticated = $rootScope.current_user.username ? true : false;
 
-   /* if(!$rootScope.authenticated){
-      $location.path('/login');
-    }*/
+    
+    $rootScope.$on( "$routeChangeStart", function(event, next, current){
+       if(!$rootScope.authenticated){
+        
+        $location.path('/login');
+       // location.reload();
+        console.log("YES COME TO Authenticate");
+      }
+    });
 
     $rootScope.signOut = function() {
       $http.get('/auth/signout');
@@ -91,6 +97,9 @@ app.config(function($routeProvider) {
     .when('/teacher/success', {
       templateUrl: 'directives/successRegistration.html',
       controller: 'teacherController'
+    })
+    .otherwise({
+      redirectTo: '/login'
     });
 });
 
@@ -501,13 +510,13 @@ app.controller('authentication',function($scope,$http,$rootScope,$location,$cook
 
 app.controller('welcomeController',function($scope,$http,$rootScope,$location){
 
- if(!$rootScope.authenticated){
+ /*if(!$rootScope.authenticated){
   console.log("not authenticated")
   $location.path('/login');
 
  }else{
   console.log("Not pass to rootScope");
- }
+ }*/
 
 });
 
