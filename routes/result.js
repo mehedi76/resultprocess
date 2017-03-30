@@ -684,7 +684,7 @@ router.route('/student/result/name/:reg')
 						lab_modify :req.body.lab_modify,
 						term_test_modify : req.body.term_test_modify
 
-						}
+					}
 				},function(err,result){
 
 					if(err){

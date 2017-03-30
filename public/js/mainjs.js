@@ -1,9 +1,14 @@
 var app = angular.module('myApp', ['ngRoute','ngResource','ngCookies']).run(function($rootScope,$http,$cookieStore, $location){
 
 
+
    $rootScope.current_user = $cookieStore.get('user') || {};
    console.log("From the run funtjion :     "+ $rootScope.current_user);
     $rootScope.authenticated = $rootScope.current_user.username ? true : false;
+
+   /* if(!$rootScope.authenticated){
+      $location.path('/login');
+    }*/
 
     $rootScope.signOut = function() {
       $http.get('/auth/signout');
@@ -444,7 +449,9 @@ app.service('resultData',function($http){
 
 app.controller('authentication',function($scope,$http,$rootScope,$location,$cookieStore){
 
-    
+  if($rootScope.authenticated){
+    $location.path('/');
+  }
 
   $scope.login = function(){
 
@@ -511,6 +518,10 @@ app.controller('welcomeController',function($scope,$http,$rootScope,$location){
 
 app.controller('changePassword',function($scope,$http,$rootScope,$location){
 
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
+
   $scope.user = {};
   console.log("..........................." + $rootScope.current_user.username);
   $scope.user.username = $rootScope.current_user.username;
@@ -531,6 +542,10 @@ app.controller('changePassword',function($scope,$http,$rootScope,$location){
 
 
 app.controller('tabulationCtrl',function($scope,$http,resultCalculation){
+
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   $scope.resultCalculation = resultCalculation;
 
@@ -636,6 +651,10 @@ $scope.findValue = function(reg,value){
 
 
 app.controller('markSheetCtrl',function($scope,$http,resultCalculation){
+
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   $scope.resultCalculation = resultCalculation;
   $scope.courses = [];
@@ -892,6 +911,10 @@ $scope.roundNum = function(num){
 
 
 app.controller('resultController',function($scope,$http,$location,$timeout,resultCalculation,resultData){
+
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   var editable = false;
   var hide = true;
@@ -1292,6 +1315,10 @@ $scope.calculateTotalResult = function(student){
 
 app.controller('studentController',function($scope,$http,$rootScope,$location){
 
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
+
   $scope.students = [];
   $scope.allSemester = {};
   $scope.showSave = false;
@@ -1438,6 +1465,10 @@ $scope.searchStudent = function(reg){
 **********************************************************************************/
 app.controller('teacherController',function($scope,$http,$rootScope,$location){
 
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
+
   $scope.registerTeacher = function(user){
     user.role = "user";//"admin"; 
 
@@ -1505,6 +1536,10 @@ app.controller('setCommittee',function($scope,$http,$location){
 /**********************************************************************
 ***********      Sesssion and  Semester information   ****************
 ********************************************************************/
+
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   var findSession = function(){
     $http.get("/api/admin/exam/commitee").success(function(data){
@@ -1681,6 +1716,10 @@ app.controller('courseShowController', function($scope,$http,$location,$filter,$
 
   //****************** read data for showing syllabu*********************
 
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
+
   $scope.session = $rootScope.sendSemester;
 
   var refresh = function(){
@@ -1740,6 +1779,10 @@ app.controller('courseShowController', function($scope,$http,$location,$filter,$
 
 
 app.controller('courseController', function($scope,$http,$location,$filter,$rootScope) {
+
+  if(!$rootScope.authenticated){
+    $location.path('/login');
+  }
 
   $scope.terms = []; 
   $scope.courses = [];

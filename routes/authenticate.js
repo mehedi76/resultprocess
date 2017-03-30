@@ -72,33 +72,7 @@ module.exports = function(passport){
     });
 
 
-    router.route('/changepassword')
-
-    .post(function(req,res){
-
-        User.update({
-                username:req.body.username
-            },{
-                $set:{
-                    password: createHash(req.body.newPassword)
-                }
-            },function(err,user){
-                if(err){
-                    console.log("Error during commitee updating...............");
-                    return res.status(500).send(err);
-                }
-
-                if(!user){
-                    console.log("data is not updata..............");
-                    return res.status(500).send({
-                        status: "Not found."
-                    });
-                }
-                console.log("......................change password..............");
-                return res.json(user);
-            });
-    });
-
+    
 
     var createHash = function(password){
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10),null);
